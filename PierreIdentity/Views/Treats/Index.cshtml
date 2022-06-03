@@ -1,6 +1,9 @@
 @using PierreIdentity.Models;
 @model IEnumerable<PierreIdentity.Models.Treat>
 
+<div class="subnav">
+  <p>@Html.ActionLink("Add new Treat", "Create")</p>
+</div>
 <h1>Treats</h1>
 
 @if(Model.Any())

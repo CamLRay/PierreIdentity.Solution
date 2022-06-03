@@ -1,8 +1,26 @@
-﻿.sub-nav {
+﻿.nav {
+  display: flex;
+}
+.nav a {
+  color: white;
+  background-color:blue;
+  padding: 10px;
+  margin: 1px;
+  border-radius: 4px;
+}
+
+.nav a:hover {
+  color: white;
+  background-color:rgb(115, 115, 252);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.subnav {
   display: flex;
 }
 
-.sub-nav a {
+.subnav a {
   color: white;
   background-color:blue;
   padding: 5px;
@@ -11,9 +29,11 @@
   font-size: .80rem;
 }
 
-.sub-nav a:hover {
+.subnav a:hover {
   color: white;
   background-color:rgb(115, 115, 252);
   text-decoration: none;
   transition: 0.3s;
 }
+
+
