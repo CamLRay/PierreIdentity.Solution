@@ -1,0 +1,10 @@
+@model PierreIdentity.Models.Treat
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.TreatId)
+
+  @Html.Label("Select Flavor")
+  @Html.DropDownList("FlavorId")
+  <input type="submit" value="Save" />
+}
