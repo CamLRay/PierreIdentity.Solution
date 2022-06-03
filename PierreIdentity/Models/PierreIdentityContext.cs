@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace PierreIdentity.Models
 {
@@ -6,7 +7,7 @@ namespace PierreIdentity.Models
   {
     public DbSet<Flavor> Flavors { get; set; }
     public DbSet<Treat> Treats { get; set; }
-    public DbSet<FlavorTreat> FlavorTreats { get; set; }
+    public DbSet<TreatFlavor> TreatFlavors { get; set; }
 
     public PierreIdentityContext(DbContextOptions options) : base(options) { }
 

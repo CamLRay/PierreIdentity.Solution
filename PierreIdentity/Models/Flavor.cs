@@ -8,10 +8,11 @@ namespace PierreIdentity.Models
 
     public Flavor()
     {
-      this.FlavorTreats = new HashSet<FlavorTreat>();
+      this.TreatFlavors = new HashSet<TreatFlavor>();
     }
     public int FlavorId { get; set; }
     public string Name { get; set; }
-    public virtual ICollection<FlavorTreat> FlavorTreats { get; }
+    public virtual ICollection<TreatFlavor> TreatFlavors { get; }
+    public virtual ApplicationUser User { get; set; }
   }
 }

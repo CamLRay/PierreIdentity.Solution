@@ -47,7 +47,7 @@ namespace PierreIdentity.Controllers
     public ActionResult Details(int id)
     {
       var thisTreat = _db.Treats
-        .Include(treat => treat.FlavorTreats)
+        .Include(treat => treat.TreatFlavors)
         .ThenInclude(join => join.Flavor)
         .FirstOrDefault(treat => treat.TreatId == id);
       return View(thisTreat);
