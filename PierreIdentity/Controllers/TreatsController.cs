@@ -86,10 +86,16 @@ namespace PierreIdentity.Controllers
 
     public ActionResult AddFlavor(int id)
     {
+      var treat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
       var viewModel = new AddFlavorViewModel 
       {
-        Treat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id),
-        Flavors = _db.Flavors.Select(flavor => new SelectFlavorViewModel { FlavorId = flavor.FlavorId, Name = flavor.Name, IsSelected = false}).ToList()
+        Treat = treat,
+        Flavors = _db.Flavors.Select(flavor => new SelectFlavorViewModel 
+        { 
+          FlavorId = flavor.FlavorId, 
+          Name = flavor.Name, 
+          IsSelected = false
+          }).ToList()
       };
     
       return View(viewModel);
@@ -102,18 +108,26 @@ namespace PierreIdentity.Controllers
       {
         foreach(var selectedFlavor in viewModel.Flavors.Where(flavor => flavor.IsSelected))
         {
-          _db.TreatFlavors.Add(new TreatFlavor() { 
-            TreatId = viewModel.Treat.TreatId, 
-            FlavorId = selectedFlavor.FlavorId,
-            
+          if(!_db.TreatFlavors.Where(entry => entry.TreatId == viewModel.Treat.TreatId).Any(entry => entry.FlavorId == selectedFlavor.FlavorId))
+          {
+          _db.TreatFlavors.Add(new TreatFlavor() { TreatId = viewModel.Treat.TreatId, FlavorId = selectedFlavor.FlavorId
             });
-          _db.SaveChanges();
+          }
         }
-        
+        foreach(var selectedFlavor in viewModel.Flavors.Where(flavor => !flavor.IsSelected))
+        {
+          var thisTreatFlavor = _db.TreatFlavors.Where(entry => entry.TreatId == viewModel.Treat.TreatId).FirstOrDefault(entry => entry.FlavorId == selectedFlavor.FlavorId);
+          if(_db.TreatFlavors.Where(entry => entry.TreatId == viewModel.Treat.TreatId).Any(entry => entry.FlavorId == selectedFlavor.FlavorId))
+          {
+          // _db.TreatFlavors.Add(new TreatFlavor() { TreatId = viewModel.Treat.TreatId, FlavorId = selectedFlavor.FlavorId});
+          _db.TreatFlavors.Remove(thisTreatFlavor);
+          }
+        _db.SaveChanges();
+        }
       }
       return RedirectToAction("Index");
+      
     }
-
   }
 
 
