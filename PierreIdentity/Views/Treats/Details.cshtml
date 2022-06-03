@@ -1,10 +1,14 @@
+@using System.Security.Claims
 @model PierreIdentity.Models.Treat
+
+@if(User.Identity.IsAuthenticated)
+{
 <nav class="subnav">
   <p>@Html.ActionLink("Add flavor", "AddFlavor", new { id = Model.TreatId})</p>
   <p>@Html.ActionLink("Edit Treat", "Edit", new { id = Model.TreatId})</p>
   <p>@Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId})</p>
 </nav>
-
+}
 
 <h3>@Html.DisplayFor(model => model.Name)</h3>
 

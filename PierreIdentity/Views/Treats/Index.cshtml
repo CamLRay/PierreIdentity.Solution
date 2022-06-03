@@ -1,10 +1,13 @@
 @using PierreIdentity.Models;
+@using System.Security.Claims
 @model IEnumerable<PierreIdentity.Models.Treat>
-
+@if(User.Identity.IsAuthenticated)
+{
 <div class="subnav">
   <p>@Html.ActionLink("Create new Treat", "Create")</p>
-  
 </div>
+}
+
 <h1>Treats</h1>
 
 @if(Model.Any())

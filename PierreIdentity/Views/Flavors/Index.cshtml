@@ -1,8 +1,14 @@
 @using PierreIdentity.Models;
+@using System.Security.Claims
 @model IEnumerable<PierreIdentity.Models.Flavor>
-<div class="subnav">
-  <p>@Html.ActionLink("Add new Flavor", "Create")</p>
+
+@if(User.Identity.IsAuthenticated)
+{
+  <div class="subnav">
+  <p>@Html.ActionLink("Create new Flavor", "Create")</p>
 </div>
+}
+
 <h1>Flavors</h1>
 
 @if(Model.Any())
