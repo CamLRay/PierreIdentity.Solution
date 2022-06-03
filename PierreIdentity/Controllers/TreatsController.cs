@@ -13,6 +13,7 @@ using System.Security.Claims;
 
 namespace PierreIdentity.Controllers
 {
+  [Authorize]
   public class TreatsController : Controller
   {
     private readonly PierreIdentityContext _db;
@@ -23,7 +24,7 @@ namespace PierreIdentity.Controllers
       _userManager = userManager;
       _db = db;
     }
-
+    [AllowAnonymous]
     public ActionResult Index ()
     {
       List<Treat> model = _db.Treats.ToList();
@@ -45,7 +46,7 @@ namespace PierreIdentity.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
       var thisTreat = _db.Treats
@@ -102,7 +103,7 @@ namespace PierreIdentity.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddFlavor(AddFlavorViewModel viewModel)
+    public ActionResult AddFlavor(AddFlavorViewModel viewModel, int id)
     {
       if (viewModel.Flavors.Any())
       {
@@ -125,7 +126,7 @@ namespace PierreIdentity.Controllers
         _db.SaveChanges();
         }
       }
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = id });
       
     }
   }

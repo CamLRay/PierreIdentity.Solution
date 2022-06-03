@@ -1,5 +1,8 @@
 @model PierreIdentity.Models.Flavor;
-
+<nav class="subnav">
+  <p>@Html.ActionLink("Edit flavor", "Edit", new { id = Model.FlavorId})</p>
+  <p>@Html.ActionLink("Delete flavor", "Delete", new { id = Model.FlavorId})</p>
+</nav>
 <h3>@Html.DisplayFor(model => model.Name)'s Details</h3>
 
 @if(@Model.TreatFlavors.Any())

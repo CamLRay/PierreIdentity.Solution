@@ -11,6 +11,7 @@ using System.Security.Claims;
 
 namespace PierreIdentity.Controllers
 {
+  [Authorize]
   public class FlavorsController : Controller
   {
     private readonly PierreIdentityContext _db;
@@ -21,7 +22,7 @@ namespace PierreIdentity.Controllers
       _userManager = userManager;
       _db = db;
     }
-
+    [AllowAnonymous]
     public ActionResult Index ()
     {
       List<Flavor> model = _db.Flavors.ToList();
@@ -43,7 +44,8 @@ namespace PierreIdentity.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
+    
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
       var thisFlavor = _db.Flavors

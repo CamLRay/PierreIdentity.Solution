@@ -1,6 +1,8 @@
 @model PierreIdentity.Models.Treat
 <nav class="subnav">
   <p>@Html.ActionLink("Add flavor", "AddFlavor", new { id = Model.TreatId})</p>
+  <p>@Html.ActionLink("Edit Treat", "Edit", new { id = Model.TreatId})</p>
+  <p>@Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId})</p>
 </nav>
 
 
