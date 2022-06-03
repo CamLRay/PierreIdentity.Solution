@@ -94,7 +94,7 @@ namespace PierreIdentity.Controllers
         { 
           FlavorId = flavor.FlavorId, 
           Name = flavor.Name, 
-          IsSelected = false
+          IsSelected = _db.TreatFlavors.Where(entry => entry.TreatId == id).Any(entry => entry.FlavorId == flavor.FlavorId)
           }).ToList()
       };
     
