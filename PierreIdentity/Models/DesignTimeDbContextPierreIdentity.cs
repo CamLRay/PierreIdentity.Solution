@@ -5,15 +5,14 @@ using System.IO;
 
 namespace PierreIdentity.Models
 {
-  public class PierreIdentityContextPierreIdentity : IDesignTimeDbContextPierreIdentity<PierreIdentityContext>
+  public class PierreIdentityContextFactory : IDesignTimeDbContextFactory<PierreIdentityContext>
   {
-
-    PierreIdentityContext IDesignTimeDbContdotn<PierreIdentityContext>.CreateDbContext(string[] args)
+    PierreIdentityContext IDesignTimeDbContextFactory<PierreIdentityContext>.CreateDbContext(string[] args)
     {
       IConfigurationRoot configuration = new ConfigurationBuilder()
-          .SetBasePath(Directory.GetCurrentDirectory())
-          .AddJsonFile("appsettings.json")
-          .Build();
+        .SetBasePath(Directory.GetCurrentDirectory())
+        .AddJsonFile("appsettings.json")
+        .Build();
 
       var builder = new DbContextOptionsBuilder<PierreIdentityContext>();
 
