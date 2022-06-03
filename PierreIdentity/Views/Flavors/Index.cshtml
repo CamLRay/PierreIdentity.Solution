@@ -1,0 +1,22 @@
+@using PierreIdentity.Models;
+@model IEnumerable<PierreIdentity.Models.Flavor>
+
+<h1>Flavors</h1>
+
+@if(Model.Any())
+{
+  <ul>
+    @foreach(Flavor flavor in Model)
+    {
+      <li>@Html.ActionLink($"{flavor.Name}", "Details", new { id = flavor.FlavorId})</li>
+    }
+  </ul>
+}
+else
+{
+<p>no flavors yet</p>
+}
+
+<div class="subnav">
+  <p>@Html.ActionLink("Add new Flavor", "Create")</p>
+</div>
