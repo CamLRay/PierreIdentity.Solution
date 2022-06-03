@@ -1,10 +1,15 @@
+@using PierreIdentity.Models
 @model PierreIdentity.Models.Treat
 
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.TreatId)
 
-  @Html.Label("Select Flavor")
-  @Html.DropDownList("FlavorId")
+  @Html.Label("Select flavors")
+  @foreach(Flavor flavor in ViewBag.FlavorId)
+  {
+    @Html.Label($"{flavor.Name}")
+    @Html.CheckBox($"{flavor.Name}", true)
+  }
   <input type="submit" value="Save" />
 }
