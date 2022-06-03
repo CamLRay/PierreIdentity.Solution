@@ -1,6 +1,8 @@
 @using PierreIdentity.Models;
 @model IEnumerable<PierreIdentity.Models.Flavor>
-
+<div class="subnav">
+  <p>@Html.ActionLink("Add new Flavor", "Create")</p>
+</div>
 <h1>Flavors</h1>
 
 @if(Model.Any())
@@ -16,7 +18,3 @@ else
 {
 <p>no flavors yet</p>
 }
-
-<div class="subnav">
-  <p>@Html.ActionLink("Add new Flavor", "Create")</p>
-</div>

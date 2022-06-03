@@ -2,12 +2,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using PierreIdentity.Models;
+using PierreIdentity.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
+
 
 namespace PierreIdentity.Controllers
 {
@@ -84,18 +86,30 @@ namespace PierreIdentity.Controllers
 
     public ActionResult AddFlavor(int id)
     {
-      var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
-      ViewBag.FlavorId = _db.Flavors.ToList();
-      return View(thisTreat);
+      var viewModel = new AddFlavorViewModel 
+      {
+        Treat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id),
+        Flavors = _db.Flavors.Select(flavor => new SelectFlavorViewModel { FlavorId = flavor.FlavorId, Name = flavor.Name, IsSelected = false}).ToList()
+      };
+    
+      return View(viewModel);
     }
 
     [HttpPost]
-    public ActionResult AddFlavor(Treat treat, int FlavorId)
+    public ActionResult AddFlavor(AddFlavorViewModel viewModel)
     {
-      if (FlavorId != 0)
+      if (viewModel.Flavors.Any())
       {
-        _db.TreatFlavors.Add(new TreatFlavor() { TreatId = treat.TreatId, FlavorId = FlavorId });
-        _db.SaveChanges();
+        foreach(var selectedFlavor in viewModel.Flavors.Where(flavor => flavor.IsSelected))
+        {
+          _db.TreatFlavors.Add(new TreatFlavor() { 
+            TreatId = viewModel.Treat.TreatId, 
+            FlavorId = selectedFlavor.FlavorId,
+            
+            });
+          _db.SaveChanges();
+        }
+        
       }
       return RedirectToAction("Index");
     }

@@ -1,15 +1,12 @@
-@using PierreIdentity.Models
-@model PierreIdentity.Models.Treat
+@using PierreIdentity.ViewModels
+@model AddFlavorViewModel
 
+<h1>add flavor to @Html.DisplayFor(model => model.Treat.Name)</h1>
 @using (Html.BeginForm())
 {
-  @Html.HiddenFor(model => model.TreatId)
+  @Html.HiddenFor(model => model.Treat)
 
   @Html.Label("Select flavors")
-  @foreach(Flavor flavor in ViewBag.FlavorId)
-  {
-    @Html.Label($"{flavor.Name}")
-    @Html.CheckBox($"{flavor.Name}", true)
-  }
+  @Html.EditorFor(model => model.Flavors)
   <input type="submit" value="Save" />
 }
