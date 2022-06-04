@@ -265,32 +265,6 @@ INSERT INTO `clients` VALUES (1,'Felix','0001-01-01 00:00:00','0001-01-01 00:00:
 UNLOCK TABLES;
 
 --
--- Table structure for table `engineers`
---
-
-DROP TABLE IF EXISTS `engineers`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `engineers` (
-  `EngineerId` int NOT NULL AUTO_INCREMENT,
-  `Name` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `JobTitle` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `StartDate` datetime(6) NOT NULL,
-  PRIMARY KEY (`EngineerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `engineers`
---
-
-LOCK TABLES `engineers` WRITE;
-/*!40000 ALTER TABLE `engineers` DISABLE KEYS */;
-INSERT INTO `engineers` VALUES (2,'Loyd','Mechanic','2020-01-01 00:00:00.000000'),(3,'OldBoy','Destruction Specialist','0001-01-01 00:00:00.000000'),(4,'Ashley','Mechanic','2022-05-30 08:00:00.000000');
-/*!40000 ALTER TABLE `engineers` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `flavors`
 --
 
@@ -315,83 +289,6 @@ LOCK TABLES `flavors` WRITE;
 /*!40000 ALTER TABLE `flavors` DISABLE KEYS */;
 INSERT INTO `flavors` VALUES (2,'Savory',NULL),(3,'Salty',NULL),(4,'Creamy',NULL),(5,'Spicy',NULL),(6,'Umami',NULL),(7,'Sweet',NULL);
 /*!40000 ALTER TABLE `flavors` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `machineengineer`
---
-
-DROP TABLE IF EXISTS `machineengineer`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `machineengineer` (
-  `MachineEngineerId` int NOT NULL AUTO_INCREMENT,
-  `EngineerId` int NOT NULL,
-  `MachineId` int NOT NULL,
-  PRIMARY KEY (`MachineEngineerId`),
-  KEY `IX_MachineEngineer_EngineerId` (`EngineerId`),
-  KEY `IX_MachineEngineer_MachineId` (`MachineId`),
-  CONSTRAINT `FK_MachineEngineer_Engineers_EngineerId` FOREIGN KEY (`EngineerId`) REFERENCES `engineers` (`EngineerId`) ON DELETE CASCADE,
-  CONSTRAINT `FK_MachineEngineer_Machines_MachineId` FOREIGN KEY (`MachineId`) REFERENCES `machines` (`MachineId`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `machineengineer`
---
-
-LOCK TABLES `machineengineer` WRITE;
-/*!40000 ALTER TABLE `machineengineer` DISABLE KEYS */;
-INSERT INTO `machineengineer` VALUES (5,2,1),(8,3,3),(9,2,3),(10,3,1);
-/*!40000 ALTER TABLE `machineengineer` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `machines`
---
-
-DROP TABLE IF EXISTS `machines`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `machines` (
-  `MachineId` int NOT NULL AUTO_INCREMENT,
-  `Name` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  PRIMARY KEY (`MachineId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `machines`
---
-
-LOCK TABLES `machines` WRITE;
-/*!40000 ALTER TABLE `machines` DISABLE KEYS */;
-INSERT INTO `machines` VALUES (1,'Car Smasher'),(2,'Car Maker'),(3,'Cat Skinner');
-/*!40000 ALTER TABLE `machines` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `stylists`
---
-
-DROP TABLE IF EXISTS `stylists`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `stylists` (
-  `StylistId` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`StylistId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `stylists`
---
-
-LOCK TABLES `stylists` WRITE;
-/*!40000 ALTER TABLE `stylists` DISABLE KEYS */;
-INSERT INTO `stylists` VALUES (1,'Ashley'),(2,'Kevin');
-/*!40000 ALTER TABLE `stylists` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -459,4 +356,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-03 16:56:09
+-- Dump completed on 2022-06-03 16:59:54

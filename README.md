@@ -2,7 +2,7 @@
 
 #### By **Cameron Ray**
 
-#### An authenticated and Authorized MVC application
+#### An Authenticated and Authorized MVC application
 
 ## Technologies Used
 
