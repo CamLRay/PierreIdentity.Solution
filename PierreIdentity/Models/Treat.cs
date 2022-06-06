@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace PierreIdentity.Models
 {
@@ -10,6 +11,7 @@ namespace PierreIdentity.Models
       this.TreatFlavors = new HashSet<TreatFlavor>();
     }
     public int TreatId { get; set; }
+    [Required]
     public string Name { get; set; }
     public virtual ICollection<TreatFlavor> TreatFlavors { get;}
     public virtual ApplicationUser User { get; set; }

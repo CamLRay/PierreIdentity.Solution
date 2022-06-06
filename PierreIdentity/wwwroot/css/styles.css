@@ -1,4 +1,8 @@
-﻿.nav {
+﻿body {
+  margin: 2rem;
+}
+
+.nav {
   display: flex;
 }
 .nav a {
